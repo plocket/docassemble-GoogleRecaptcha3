@@ -1,0 +1,65 @@
+include:
+  - recaptcha.yml
+---
+mandatory: True
+code: |
+  intro
+  q2
+  #if not recaptcha_gathered:
+  q3
+  #recaptcha_success
+  log('before pre', 'console')
+  pre
+  log(recaptcha_success, 'console')
+  end
+---
+id: intro
+event: intro
+continue button field: intro
+question: |
+  Welcome to the interview.
+script: |
+  ${ recaptcha_javascript() }
+---
+id: question 2
+continue button field: q2
+question: Answer stuff!
+fields:
+  - no label: a
+    datatype: yesno
+  - no label: b
+    datatype: yesno
+  - no label: c
+    datatype: yesno
+script: |
+  ${ recaptcha_javascript() }
+---
+id: question 3
+continue button field: q3
+question: More!
+fields:
+  - no label: d
+    datatype: yesno
+  - no label: e
+    datatype: yesno
+  - no label: f
+    datatype: yesno
+#subquestion: |
+#  ${ recaptcha_html() }
+script: |
+  ${ recaptcha_javascript() }
+---
+id: pre-end
+continue button field: pre
+question: Does this help?
+---
+id: end
+event: end
+question: |
+  Greetings,
+  % if recaptcha_success:
+  earthling.
+  % else:
+  fellow robot.
+  % endif
+---

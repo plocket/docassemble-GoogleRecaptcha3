@@ -1,0 +1,1 @@
+This demos the interview code for using Google's recaptcha 3 with regular docassemble "Continue" buttons. To properly set up Google's recaptcha 3 for your server, you must take other steps beforehand.
